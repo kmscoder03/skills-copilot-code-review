@@ -305,8 +305,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = {
       title: announcementTitleInput.value,
       message: announcementMessageInput.value,
-      start_date: announcementStartDateInput.value ? new Date(announcementStartDateInput.value) : null,
-      expiration_date: new Date(announcementExpirationDateInput.value),
+      // Send plain YYYY-MM-DD strings (or null) so the backend can parse with datetime.fromisoformat
+      start_date: announcementStartDateInput.value || null,
+      expiration_date: announcementExpirationDateInput.value || null,
     };
     try {
       let res;
