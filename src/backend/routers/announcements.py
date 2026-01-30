@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from datetime import datetime
 from ..database import announcements_collection
 from pymongo.collection import ReturnDocument
+from bson import ObjectId
 from ..database import announcements_collection
 from pymongo.collection import ReturnDocument
 
@@ -61,6 +62,11 @@ def create_announcement(announcement: dict, user: dict = Depends(get_current_use
 def update_announcement(announcement_id: str, update: dict, user: dict = Depends(get_current_user)):
     if not user or user.get("role") not in ("admin", "teacher"):
         raise HTTPException(status_code=401, detail="Not authenticated")
+    # Convert announcement_id to ObjectId
+    try:
+        obj_id = ObjectId(announcement_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid announcement ID format")
     update["last_modified"] = datetime.now()
     # Parse dates
     if update.get("start_date"):
@@ -74,7 +80,7 @@ def update_announcement(announcement_id: str, update: dict, user: dict = Depends
         except Exception:
             raise HTTPException(status_code=400, detail="Invalid expiration date format.")
     ann = announcements_collection.find_one_and_update(
-        {"_id": announcement_id},
+        {"_id": obj_id},
         {"$set": update},
         return_document=ReturnDocument.AFTER
     )
@@ -91,7 +97,12 @@ def update_announcement(announcement_id: str, update: dict, user: dict = Depends
 def delete_announcement(announcement_id: str, user: dict = Depends(get_current_user)):
     if not user or user.get("role") not in ("admin", "teacher"):
         raise HTTPException(status_code=401, detail="Not authenticated")
-    result = announcements_collection.delete_one({"_id": announcement_id})
+    # Convert announcement_id to ObjectId
+    try:
+        obj_id = ObjectId(announcement_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid announcement ID format")
+    result = announcements_collection.delete_one({"_id": obj_id})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Announcement not found")
     return
