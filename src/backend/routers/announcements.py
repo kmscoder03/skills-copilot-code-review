@@ -1,8 +1,8 @@
 
-from fastapi import APIRouter, Depends, HTTPException, status, Request
-from fastapi.security import OAuth2PasswordBearer
-from typing import List, Optional
+from fastapi import APIRouter, Depends, HTTPException, Request
 from datetime import datetime
+from ..database import announcements_collection
+from pymongo.collection import ReturnDocument
 from ..database import announcements_collection
 from pymongo.collection import ReturnDocument
 
