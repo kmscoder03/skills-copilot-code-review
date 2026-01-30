@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const announcementMessageInput = document.getElementById("announcement-message");
   const announcementStartDateInput = document.getElementById("announcement-start-date");
   const announcementExpirationDateInput = document.getElementById("announcement-expiration-date");
-  const saveAnnouncementBtn = document.getElementById("save-announcement-btn");
-  const cancelAnnouncementBtn = document.getElementById("cancel-announcement-btn");
   const announcementsMessage = document.getElementById("announcements-message");
   // DOM elements
   const activitiesList = document.getElementById("activities-list");
