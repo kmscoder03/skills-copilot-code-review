@@ -666,17 +666,6 @@ footer {
 }
 
 .announcement-banner {
-  background-color: var(--success);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.08);
-  font-size: 1.05rem;
-}
-.announcement-banner {
   background: linear-gradient(90deg, var(--success) 80%, var(--success-light) 100%);
   color: white;
   text-align: center;
@@ -694,10 +683,6 @@ footer {
 }
 
 .announcements-modal-content {
-  max-width: 500px;
-  width: 95%;
-}
-.announcements-modal-content {
   max-width: 520px;
   width: 98%;
   background: var(--surface);
@@ -711,25 +696,9 @@ footer {
   margin-bottom: 18px;
   max-height: 220px;
   overflow-y: auto;
-}
-#announcements-list {
-  margin-bottom: 18px;
-  max-height: 220px;
-  overflow-y: auto;
   padding-right: 4px;
 }
 
-.announcement-item {
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  position: relative;
-}
 .announcement-item {
   background: var(--background);
   border: 1px solid var(--border);
@@ -747,29 +716,13 @@ footer {
   display: flex;
   gap: 8px;
   margin-top: 4px;
-}
-.announcement-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 4px;
   justify-content: flex-end;
 }
 
 #announcement-form .form-group {
-  margin-bottom: 10px;
-}
-#announcement-form .form-group {
   margin-bottom: 12px;
 }
 
-#announcement-form input,
-#announcement-form textarea {
-  width: 100%;
-  padding: 6px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 0.95em;
-}
 #announcement-form input,
 #announcement-form textarea {
   width: 100%;
@@ -783,16 +736,9 @@ footer {
 #announcement-form textarea {
   min-height: 60px;
   resize: vertical;
-}
-#announcement-form textarea {
-  min-height: 60px;
-  resize: vertical;
   font-family: inherit;
 }
 
-#announcement-form button {
-  margin-right: 8px;
-}
 #announcement-form button {
   margin-right: 8px;
   min-width: 80px;
