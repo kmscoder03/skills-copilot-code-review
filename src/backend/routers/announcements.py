@@ -8,14 +8,15 @@ from pymongo.collection import ReturnDocument
 
 router = APIRouter(prefix="/announcements", tags=["announcements"])
 
-# Dummy authentication dependency (replace with real session/cookie check)
+# Authentication dependency: relies on user being set in request.state by auth middleware
 def get_current_user(request: Request):
-    # Example: check for a session or token in request.cookies or headers
-    # Here, just simulate admin for demo
     user = getattr(request.state, "user", None)
     if not user:
-        # Fallback: allow demo admin
-        user = {"username": "principal", "role": "admin"}
+        # No authenticated user found; reject the request
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+        )
     return user
 
 @router.get("/")
